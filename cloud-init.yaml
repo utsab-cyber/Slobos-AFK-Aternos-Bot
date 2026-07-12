@@ -1,0 +1,107 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - curl
+  - docker.io
+  - docker-compose
+runcmd:
+  - [ sh, -lc, 'sudo usermod -aG docker ubuntu || true' ]
+  - [ sh, -lc, 'mkdir -p /home/ubuntu/afk-bot' ]
+  - [ sh, -lc, 'cd /home/ubuntu/afk-bot && git clone https://github.com/utsab-cyber/Slobos-AFK-Aternos-Bot.git . || (cd /home/ubuntu/afk-bot && git pull)' ]
+  - [ sh, -lc, 'cd /home/ubuntu/afk-bot && docker compose up -d --build' ]
+write_files:
+  - path: /home/ubuntu/settings.json
+    owner: ubuntu:ubuntu
+    permissions: '0600'
+    encoding: plain
+    content: |
+      {
+        "name": "AFK Bot",
+        "bot-account": {
+          "username": "UtsabAFKBot",
+          "password": "REPLACE_WITH_YOUR_PASSWORD",
+          "type": "offline"
+        },
+        "server": {
+          "ip": "utsabDutta.aternos.me",
+          "port": 59819,
+          "version": "1.21.4",
+          "try-creative": false
+        },
+        "position": {
+          "enabled": true,
+          "x": 0,
+          "y": 100,
+          "z": 0
+        },
+        "utils": {
+          "auto-auth": {
+            "enabled": true,
+            "password": "REPLACE_WITH_YOUR_SERVER_PASSWORD"
+          },
+          "anti-afk": {
+            "enabled": true,
+            "sneak": true
+          },
+          "chat-messages": {
+            "enabled": true,
+            "repeat": true,
+            "repeat-delay": 120,
+            "messages": [
+              "I'm a regular player",
+              "Subscribe to Slobos!",
+              "I like to play Minecraft!"
+            ]
+          },
+          "chat-log": true,
+          "auto-reconnect": true,
+          "auto-reconnect-delay": 2000,
+          "max-reconnect-delay": 120000
+        },
+        "movement": {
+          "enabled": true,
+          "circle-walk": {
+            "enabled": true,
+            "radius": 4,
+            "speed": 3000
+          },
+          "look-around": {
+            "enabled": true,
+            "interval": 5000
+          },
+          "random-jump": {
+            "enabled": true,
+            "interval": 10000
+          }
+        },
+        "modules": {
+          "avoidMobs": true,
+          "combat": true,
+          "beds": false,
+          "chat": true,
+          "console-commands": true
+        },
+        "combat": {
+          "attack-mobs": true,
+          "auto-eat": true
+        },
+        "beds": {
+          "pick-up-day": false,
+          "place-night": false
+        },
+        "discord": {
+          "enabled": false,
+          "webhookUrl": "YOUR_DISCORD_WEBHOOK_URL_HERE",
+          "events": {
+            "connect": true,
+            "disconnect": true,
+            "chat": false
+          }
+        },
+        "chat": {
+          "respond": true
+        }
+      }
+# Note: Before launching the VM, EDIT the above settings.json content and replace the placeholder passwords with your real credentials. Do NOT commit these values to Git.

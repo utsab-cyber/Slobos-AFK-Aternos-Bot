@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  afk-bot:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./settings.json:/app/settings.json:ro
+    environment:
+      - TZ=UTC
+    # Port is not strictly necessary unless you need access; keep it for clarity.
+    ports:
+      - "59819:59819"
