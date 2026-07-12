@@ -137,7 +137,7 @@ client.on('messageCreate', async (message) => {
   }
 
   // fallback
-  await message.reply(`Unknown command: ${command}. Try \\`${PREFIX}help\\` for a list.`);
+await message.reply(`Unknown command: ${command}. Try ${PREFIX}help for a list.`);
 });
 
 // Start Discord client if token provided
