@@ -102,7 +102,7 @@ async function handleComeCommand(message, args) {
 
   // NOTE: This repository scaffold does not include the pathfinder plugin. To enable proper movement, install and configure mineflayer-pathfinder.
   // For now, we'll just chat that we are coming.
-  mcBot.chat(`Coming to ${targetName} (requested via Discord).`);
+  console.log(`Coming to ${targetName} (requested via Discord).`);
 }
 
 client.on('ready', () => {
