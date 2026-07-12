@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: slobos-afk-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DISCORD_TOKEN
+        scope: project
+      - key: MC_HOST
+        scope: project
+      - key: MC_PORT
+        value: "59819"
+      - key: MC_USERNAME
+        value: "UtsabAFKBot"
+      - key: PREFIX
+        value: "!"
