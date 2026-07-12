@@ -1,48 +1,36 @@
-# 🤖 Slobos & Mr. Juice Aternos 24/7 Hosting Bot
+# Slobos AFK / Aternos Bot
 
-A Minecraft bot that helps keep an Aternos server online 24/7 by automatically joining it using a Mineflayer-based bot. Perfect for SMPs or small multiplayer servers that shut down when no players are online.
+This is a simple scaffold for a Discord bot with optional Mineflayer (Minecraft) integration. It listens for Discord messages and accepts a few basic commands:
 
----
+- `!help` - show available commands
+- `!mine` - attempt to find and dig a nearby block (requires a running Mineflayer bot connected to a Minecraft server)
+- `!come [player]` - attempt to come to a player (basic placeholder behavior)
 
-## ✨ Features
-*   ✅ **Auto-Connect**: Automatically joins your server.
-*   ✅ **Infinite Uptime**: Prevents AFK kicks and server shutdowns.
-*   ✅ **Smart Reconnect**: Automatically reconnects if the internet drops or server restarts.
-*   ✅ **Render-Ready**: Includes "Self-Ping" to run 24/7 for FREE on Render.com.
-*   ✅ **Plugin Support**: Compatible with Paper/Spigot/Bukkit (auto-auth included).
+This repository contains a minimal working scaffold. Extend the bot with mineflayer-pathfinder for movement, permissions checks, better command parsing, slash commands, etc.
 
----
+Getting started
 
-## 🛠️ Requirements
-*   **GitHub Account**
-*   **Aternos Server**
-*   **Render Account** (for 24/7 hosting)
-*   **Common Sense!** 🧠        
+1. Create a .env file at the repository root with these variables:
 
----
+```
+DISCORD_TOKEN=your_discord_bot_token
+PREFIX=!
+MC_HOST=your.minecraft.server.address   # optional
+MC_PORT=25565                           # optional
+MC_USERNAME=AFKBot                      # optional
+MC_VERSION=auto                         # optional
+```
 
-## 🚀 Setup Guide
+2. Install dependencies and run:
 
-We have made setup super easy! Check out the guide below:
+```
+npm install
+npm start
+```
 
-[**Detailed Google Doc Guide**](https://docs.google.com/document/d/1Fl0dRzP6O30ehp5-QcaB11IobF8I1JJhKUipzCWiCYA/edit?tab=t.0).
+Notes and next steps
 
----
+- This scaffold uses the Discord message-based prefix commands for simplicity. Consider switching to Discord Slash Commands for a better experience.
+- To enable safe movement and pathfinding in Minecraft, add `mineflayer-pathfinder` and configure it. The `come` command currently only uses chat to indicate intent and will need pathfinding to actually move the bot.
+- Improve authentication and permissions so only authorized Discord users can control the in-game bot.
 
-## ⚙️ Usage
-*   **Start**: Just turn on your Aternos server. The bot will join automatically.
-*   **Status**: Visit the Render URL to see a status dashboard.
-*   **Chat**: The bot logs chat to the console.
-
----
-
-## ⚠️ Disclaimer
-This project is not affiliated with Aternos, Mojang, or Microsoft. Use at your own risk. Misuse may violate platform terms of service. This bot does not bypass Aternos queue limits; it only keeps the server active once it is online.
-
----
-
-## ❤️ Credits
-*   **Slobos (Discord: sloboscc)** — Original creator & idea. (The GOAT 🐐)
-*   **Mr.Juice (Discord: Mr.Juice3046)** — Updates, Guide, & Maintenance.
-
-**License**: MIT License
